@@ -1,0 +1,13 @@
+[Unit]
+Description=Vulcand Proxy
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=/usr/bin/docker pull mailgun/vulcand:v0.8.0-beta.2
+ExecStart=/usr/bin/docker run --rm --name vulcand -p 80:80 -p 8181:8181 mailgun/vulcand:v0.8.0-beta.2 /go/bin/vulcand -apiInterface=0.0.0.0  -interface=0.0.0.0 --etcd=http://172.17.8.101:4001 -port=80 -apiPort=8182
+ExecStop=/usr/bin/docker stop vulcand
+
+[X-Fleet]
+Conflicts=vulcand@*.service

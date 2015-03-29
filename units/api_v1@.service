@@ -1,0 +1,13 @@
+[Unit]
+Description=API V1
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=/usr/bin/docker pull patforna/cw-api
+ExecStart=/usr/bin/docker run --rm --name api_v1 -p 4567:4567 -e API_VERSION=V1 patforna/cw-api
+ExecStop=/usr/bin/docker stop api_v1
+
+[X-Fleet]
+Conflicts=api_v1@*.service
