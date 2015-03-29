@@ -199,6 +199,7 @@ This is just a proof of concept and there's quite a bit of outstanding work that
 * Automatic registration of Vulcand IPs in DNS
 * Automatic registration of API IPs in Vulcand
 * Release pipeline
+* etc.
 
 #### Pros/Cons
 
