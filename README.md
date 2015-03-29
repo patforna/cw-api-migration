@@ -51,7 +51,7 @@ The approach is the same for all three phases. The only thing that changes is th
 
 The solution uses CoreOs, Docker, Etcd, Fleet and Vulcand as the basic infrastructure. Unlike shown in the original diagram, Vulcand will also be deployed onto CoreOs and use the same Etcd cluster.
 
-[TBD: Diagram]
+![Architecture](/docs/arch.png)
 
 ### Physical
 * 3 servers running CoreOs
