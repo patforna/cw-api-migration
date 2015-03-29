@@ -1,28 +1,28 @@
-## API Migration Strategy
+# API Migration Strategy
 
 ## Assumptions
 
 In the interest of completing the task in the given timeframe, I've made a number of assumptions which are listed below:
 
-### How do we identify users as v1/v2?
+**How do we identify users as v1/v2?**<br/>
 Using a HTTP header (i.e. `X-API-VERSION`).
 
-### How does the version header get set?
+**How does the version header get set?**<br/>
 Out of scope. By some other component (e.g. another service, vulcand middleware, etc.)
 
-### How do we identify new/existing users?
+**How do we identify new/existing users?**<br/>
 All we need to know is if we're processing a v1 or v2 request.
 
-### How do we authenticate users?
+**How do we authenticate users?**<br/>
 Out of scope. Could be done by verifying a signed header, token, cookie, etc.
     
-### What if incoming request can't be authenticated?
+**What if incoming request can't be authenticated?**<br/>
 Out of scope. Return 400 Bad Request.
     
-### What if incoming request doesn't include the version header?
+**What if incoming request doesn't include the version header?**<br/>
 Out of scope. Return 400 Bad Request.
     
-### Data Migration
+**Do we need to migrate data?**<br/>
 No data migration necessary, because API verison share common data store (as per diagram).
 
 ## Approach
