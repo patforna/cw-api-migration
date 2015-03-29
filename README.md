@@ -15,13 +15,13 @@ All we need to know is if we're processing a v1 or v2 request.
 
 **How do we authenticate users?**<br/>
 Out of scope. Could be done by verifying a signed header, token, cookie, etc.
-    
+
 **What if incoming request can't be authenticated?**<br/>
 Out of scope. Return 400 Bad Request.
-    
+
 **What if incoming request doesn't include the version header?**<br/>
 Out of scope. Return 400 Bad Request.
-    
+
 **Do we need to migrate data?**<br/>
 No data migration necessary, because API verison share common data store (as per diagram).
 
@@ -65,9 +65,9 @@ In order to test the setup, I've created a Vagrant file, which spins up a CoreOs
 
 
 ### CoreOs / Vagrant
-   
+
 Start up the CoreOs cluster:
-   
+
 ```shell
 $ cd vagrant
 $ vagrant up
@@ -87,7 +87,7 @@ core-03                   running (virtualbox)
 The IPs assigned to the servers will be `172.17.8.10x` and Etcd should be running on each machine on port `4001`.
 
 ```shell
-curl -w "\n" -L http://172.17.8.101:4001/version
+$ curl -w "\n" -L http://172.17.8.101:4001/version
 {"releaseVersion":"0.4.7","internalVersion":"1"}
 ```
 
@@ -99,13 +99,13 @@ Launch two instances of each API version:
 
 ```shell
 $ cd units
-fleetctl --endpoint http://172.17.8.101:4001 submit api_v1@.service
-fleetctl --endpoint http://172.17.8.101:4001 start api_v1@1
-fleetctl --endpoint http://172.17.8.101:4001 start api_v1@2
+$ fleetctl --endpoint http://172.17.8.101:4001 submit api_v1@.service
+$ fleetctl --endpoint http://172.17.8.101:4001 start api_v1@1
+$ fleetctl --endpoint http://172.17.8.101:4001 start api_v1@2
 
-fleetctl --endpoint http://172.17.8.101:4001 submit api_v2@.service
-fleetctl --endpoint http://172.17.8.101:4001 start api_v2@1
-fleetctl --endpoint http://172.17.8.101:4001 start api_v2@2
+$ fleetctl --endpoint http://172.17.8.101:4001 submit api_v2@.service
+$ fleetctl --endpoint http://172.17.8.101:4001 start api_v2@1
+$ fleetctl --endpoint http://172.17.8.101:4001 start api_v2@2
 ```
 
 Verify that the services have started:
@@ -135,7 +135,7 @@ Deployment of Vulcand is the same as the process described above for deploying t
 
 ```shell
 $ fleetctl --endpoint http://172.17.8.101:4001 submit vulcand@.service
-fleetctl --endpoint http://172.17.8.101:4001 start vulcand@1
+$ fleetctl --endpoint http://172.17.8.101:4001 start vulcand@1
 ```
 
 Verify it has started:
@@ -194,7 +194,7 @@ This is just a proof of concept and there's quite a bit of outstanding work that
 * DNS
 * Write component that decides if users are v1 or v2 (service, vulcand middleware, etc.)
 * Authenticate users and requests
-* Ensure consistent experience by always routing same users to same version (Phase I) 
+* Ensure consistent experience by always routing same users to same version (Phase I)
 * More than one vulcand instance
 * Automatic registration of Vulcand IPs in DNS
 * Automatic registration of API IPs in Vulcand
