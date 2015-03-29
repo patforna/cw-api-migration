@@ -193,8 +193,24 @@ $ curl -w "\n" --header "X-API-VERSION: 2" http://172.17.8.101
 V2.OUTPUT
 ```
 
+### Notes
 
+This is just a proof of concept and there's quite a bit of outstanding work that would have to happen in order to productionise this, such as:
 
+* Set up in Cloud or own DataCentre
+* DNS
+* Write component that decides if users are v1 or v2 (service, vulcand middleware, etc.)
+* Authenticate users and requests
+* Ensure consistent experience by always routing same users to same version (Phase I) 
+* More than one vulcand instance
+* Automatic registration of Vulcand IPs in DNS
+* Automatic registration of API IPs in Vulcand
+* Release pipeline
+
+#### Pros/Cons
+
+* Pro: approach is highly scalable, available
+* Con: lots of new technologies; complexity.
 
 
 
