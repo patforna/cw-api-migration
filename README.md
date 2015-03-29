@@ -53,13 +53,6 @@ The solution uses CoreOs, Docker, Etcd, Fleet and Vulcand as the basic infrastru
 
 ![Architecture](/docs/arch.png)
 
-### Physical
-* 3 servers running CoreOs
-* Etcd cluster on 3 servers
-* API v1 on 2 servers
-* API v2 on 2 servers
-* Vulcand on 1 server
-
 ## Environment Setup
 
 In order to test the setup, I've created a Vagrant file, which spins up a CoreOs cluster of three machines. We then use this environment to deploy Vulcand and the two versions of the API, which are provided as Docker containers and can be deployed using Fleet.
