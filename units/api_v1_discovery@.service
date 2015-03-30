@@ -1,0 +1,11 @@
+[Unit]
+Description=Announce API V1
+BindsTo=api_v1@%i.service
+After=api_v1@%i.service
+
+[Service]
+ExecStart=/bin/sh -c 'while true; do etcdctl set /vulcand/backends/b1/servers/srv%i \'{"URL": "http://%H:4567"}\' --ttl 60;sleep 45;done'
+ExecStop=/usr/bin/etcdctl rm /vulcand/backends/b1/servers/srv%i
+
+[X-Fleet]
+MachineOf=api_v1@%i.service
