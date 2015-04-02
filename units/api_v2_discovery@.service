@@ -1,0 +1,12 @@
+[Unit]
+Description=Announce API V2
+BindsTo=api_v2@%i.service
+After=api_v2@%i.service
+
+[Service]
+EnvironmentFile=/etc/environment
+ExecStart=/bin/sh -c "while true; do etcdctl set /vulcand/backends/b2/servers/srv%i \"{\"URL\": \"http://$COREOS_PUBLIC_IPV4:4567\"}\" --ttl 60;sleep 45;done"
+ExecStop=/usr/bin/etcdctl rm /vulcand/backends/b2/servers/srv%i
+
+[X-Fleet]
+MachineOf=api_v2@%i.service

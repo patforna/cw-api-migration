@@ -1,3 +1,5 @@
+<<<<<<< Local Changes
+<<<<<<< Local Changes
 # API Migration Strategy
 
 ## Assumptions
@@ -155,16 +157,12 @@ Configuration of Vulcand is done via Etcd.
 
 ```shell
 $ etcdctl --peers http://172.17.8.101:4001 set /vulcand/backends/b1/backend '{"Type": "http"}'
-$ etcdctl --peers http://172.17.8.101:4001 set /vulcand/backends/b1/servers/srv1 '{"URL": "http://172.17.8.102:4567"}'
-$ etcdctl --peers http://172.17.8.101:4001 set /vulcand/backends/b1/servers/srv2 '{"URL": "http://172.17.8.103:4567"}'
 ```
 
 ##### API V2 backend and servers
 
 ```shell
 $ etcdctl --peers http://172.17.8.101:4001 set /vulcand/backends/b2/backend '{"Type": "http"}'
-$ etcdctl --peers http://172.17.8.101:4001 set /vulcand/backends/b2/servers/srv1 '{"URL": "http://172.17.8.103:4568"}'
-$ etcdctl --peers http://172.17.8.101:4001 set /vulcand/backends/b2/servers/srv2 '{"URL": "http://172.17.8.102:4568"}'
 ```
 
 ##### Frontends
@@ -205,11 +203,3 @@ This is just a proof of concept and there's quite a bit of outstanding work that
 
 * Pro: approach is highly scalable, available
 * Con: lots of new technologies; complexity.
-
-
-
-
-
-
-
-
